@@ -31,3 +31,42 @@ body {
     text-wrap: balance;
   }
 }
+
+/* CSS para el modal */
+.modal {
+  position: relative;
+  max-width: 90%; /* Ajusta el máximo ancho del modal */
+  margin: 0 auto; /* Centra el modal horizontalmente */
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px; /* Espacio a los lados */
+}
+
+
+@media (min-width: 640px) {
+  .modal {
+    max-width: 80%; 
+  }
+}
+
+@media (min-width: 768px) {
+  .modal {
+    max-width: 70%; 
+  }
+}
+
+@media (min-width: 1024px) {
+  .modal {
+    max-width: 60%; 
+  }
+}
