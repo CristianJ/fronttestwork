@@ -35,7 +35,7 @@ export default function SearchMovie() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center">Search Movies</h1>
+        <h1 className="text-2xl font-bold mb-4 text-center">Buscador de Peliculas</h1>
         <form onSubmit={handleSearch} className="mb-6">
           <input
             type="text"
