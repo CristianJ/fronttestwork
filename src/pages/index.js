@@ -1,7 +1,7 @@
 export async function getServerSideProps(context) {
     return {
       redirect: {
-        destination: '/searchMovie',
+        destination: '/SearchMovie',
         permanent: false,
       },
     };

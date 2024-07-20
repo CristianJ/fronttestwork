@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { IMDbAdapter } from '../adapters/ImdbAdapter';
-import DetailMovie from './DetailMovie'
+import DetailMovie from './DetailMovie';
 
 
-export default function SearchPage() {
+export default function SearchMovie() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
