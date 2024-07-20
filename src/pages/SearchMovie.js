@@ -1,15 +1,13 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { IMDbAdapter } from '../adapters/ImdbAdapter';
-import DetailMovie from './DetailMovie';
-
 
 export default function SearchMovie() {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const router = useRouter();
 
   const handleSearch = async (event) => {
     event.preventDefault();
@@ -30,14 +28,8 @@ export default function SearchMovie() {
     }
   };
 
-  const openModal = (movie) => {
-    setSelectedMovie(movie);
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-    setSelectedMovie(null);
+  const handleViewMore = (movieId) => {
+    router.push(`/movie/${movieId}`);
   };
 
   return (
@@ -74,34 +66,33 @@ export default function SearchMovie() {
               {movies.map(movie => (
                 <li
                   key={movie.id}
-                  className="flex items-center p-4 border-b border-gray-300 cursor-pointer"
-                  onClick={() => openModal(movie)}
+                  className="flex flex-col p-4 border-b border-gray-300"
                 >
-                  <img
-                    src={movie.getFullPosterPath()}
-                    alt={movie.title}
-                    className="w-24 h-36 object-cover rounded-md"
-                  />
-                   <div className="ml-4 flex-1">
-                   
-                      <span className="block text-lg font-semibold mb-2 cursor-pointer">{movie.title}</span>
-                   
-                    <p className="text-gray-700">{movie.overview}</p>
+                  <div className="flex items-center">
+                    <img
+                      src={movie.getFullPosterPath()}
+                      alt={movie.title}
+                      className="w-24 h-36 object-cover rounded-md"
+                    />
+                    <div className="ml-4 flex-1">
+                      <span className="block text-lg font-semibold mb-2">{movie.title}</span>
+                      <p className="text-gray-700 mb-2">{movie.overview.slice(0, 200)}{movie.overview.length > 200 ? '...' : ''}</p>
+                      <button
+                        onClick={() => handleViewMore(movie.id)}
+                        className="mt-2 text-blue-500 hover:underline"
+                      >
+                        Ver más
+                      </button>
+                    </div>
                   </div>
                 </li>
               ))}
             </ul>
           ) : (
-            !loading && <p>No se encontrò películas</p>
+            !loading && <p>No se encontró películas</p>
           )}
         </div>
       </div>
-
-      <DetailMovie
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        movie={selectedMovie}
-      />
     </div>
   );
 }
