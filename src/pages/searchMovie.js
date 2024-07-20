@@ -92,7 +92,7 @@ export default function SearchPage() {
               ))}
             </ul>
           ) : (
-            !loading && <p>No se encontrarón películas</p>
+            !loading && <p>No se encontrò películas</p>
           )}
         </div>
       </div>
